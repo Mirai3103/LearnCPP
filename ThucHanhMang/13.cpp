@@ -1,29 +1,45 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-int main(int argc, char const *argv[])
-{
-    int n = 102;
-    bool SanNt[102] ;
+
+void taosanNt(bool SanNt[]){
+    // gia su ban dau tat ca cac so la so nt
+    for (int i = 0; i < 100; i++)
+    {
+        SanNt[i] = true;
+    }
     
-    fill_n(SanNt,102,true);
-    for (int i = 2; i <n; i++)
+    for (int i = 2; i <100; i++)
     {
         if (SanNt[i])
         {
-            for (int j = 2; j*i < n; j ++)
+            for (int j = 2; j*i < 100; j ++)
             {
                 SanNt[j*i] = false;
             }
         }
     }
-    for (int i = 2; i <n; i++)
+
+}
+int xuatsanNT(bool arr[], int &n){
+    cin >>n;
+    int i = 2;
+    while (n >0)
     {
-        if(SanNt[i]){
-            cout << i <<" ";
-        }
+       if(arr[i]){
+           cout << i <<" ";
+           n--;
+       }
+       i++;
     }
     
     
+}
+int main(int argc, char const *argv[])
+{
+    int n;
+    bool SanNt[100] ;
+    taosanNt(SanNt)  ;
+    xuatsanNT(SanNt,n);
     return 0;
 }
