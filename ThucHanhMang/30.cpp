@@ -1,5 +1,5 @@
 #include <iostream>
-#include <limits.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 void xuatmang(int arr[], int n)
@@ -28,36 +28,36 @@ int solve(int arr[], int n)
 
     if (n == 1)
         return arr[0];
-    int min1, min2;
+    int max2, max1;
     if (arr[0] >= arr[1])
     {
-        min1 = arr[1];
-        min2 = arr[0];
+        max2 = arr[1];
+        max1 = arr[0];
     }
     else
     {
-        min1 = arr[0];
-        min2 = arr[1];
+        max2 = arr[0];
+        max1 = arr[1];
     }
     for (int i = 2; i < n; i++)
     {
-        if (arr[i] < min1)
+        if (arr[i] > max1)
         {
-            min2 = min1;
-            min1 = arr[i];
+            max2 = max1;
+            max1 = arr[i];
         }
         else
         {
-            if (arr[i] != min1)
-            {
-                if ((arr[i] < min2))
+            if (arr[i] != max1)
+            {   
+                if ((arr[i] > max2))
                 {
-                    min2 = arr[i];
+                    max2 = arr[i];
                 }
             }
         }
     }
-    return min2;
+    return max2;
 }
 int main()
 {
@@ -67,6 +67,7 @@ int main()
     int arr[100];
     nhapngaunhien(arr, n);
     cout << solve(arr, n);
+    sort(arr,arr+n);
 
     return 0;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+int kieudequi(int n , int x)
 int main()
 {
     int n,x;

@@ -26,6 +26,5 @@ int TinhYnBangDeQui(int n){
 
 int main()
 {
- printf();
 
 }
