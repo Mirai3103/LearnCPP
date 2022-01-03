@@ -176,7 +176,7 @@ int main()
     nhapngaunhien(arr, n);
 
     auto start = high_resolution_clock::now();
-    Qsort(arr,n);
+    heapSort(arr,n);
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
 
