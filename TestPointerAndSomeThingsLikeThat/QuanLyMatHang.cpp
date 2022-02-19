@@ -278,12 +278,12 @@ void ChucNang7(LinkedList &list)
 void ChucNang8(LinkedList &list)
 {
     Node *nextNode = list.getFirstNode();
-    if (nextNode == NULL)
-    {
-        AddItem(list);
-    }
-    else
-    {
+    // if (nextNode == NULL)
+    // {
+    //     AddItem(list);
+    // }
+    // else
+    // {
         int itemcode;
         cout << " Nhap ma mat hang:";
         cin >> itemcode;
@@ -320,7 +320,7 @@ void ChucNang8(LinkedList &list)
             cout << "Mat hang da ton tai" << endl;
             item->show();
         }
-    }
+    
 }
 void ChucNang9(LinkedList &list)
 {
