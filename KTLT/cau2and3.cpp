@@ -48,18 +48,11 @@ bool isPrimeNumber(int n)
     }
     return n >= 2;
 }
-int daonguoc(int x)
-{
-    int sodao = 0;
-    int i = 1;
-    while (x > 0)
-    {
-        sodao = sodao * i + x % 10;
-        i *= 10;
-        x /= 10;
-    }
-    return sodao;
-}
+// int daonguoc(int x)
+// {
+//     if(x==0) return 0;
+//     return daonguoc(x/10)*10 + x
+// }
 void cau3b()
 {
     for (int i = 2; i < 1000; i++)
@@ -94,9 +87,9 @@ int main()
 {
 
     // cout << cau2dequi(5) << endl;
-    cout << cau2khongdequi(5) << endl;
+    cout << daonguoc(192);
     // int a[] = {2, 2, 2, 22, 2, 1, 2, 22, 62, 82};
     // cout << DayConChanTangDaiNhat(a, 10);
-    cau3b();
+
     return 0;
 }

@@ -19,8 +19,8 @@ void inputListAuthors(ListAuthors &listAuthor)
     fflush(stdin);
     for (int i = 0; i < listAuthor.length; i++)
     {
-        std::cout << "Nhap ten tac gia thu " << i + 1 << ": ";
-        std::cin.getline(listAuthor.nameOfAuthors[i], 100);
+        cout << "Nhap ten tac gia thu " << i + 1 << ": ";
+        cin.getline(listAuthor.nameOfAuthors[i], 100);
     }
 }
 void showListAuthors(ListAuthors listAuthor)
@@ -35,34 +35,34 @@ void showListAuthors(ListAuthors listAuthor)
 void inputBook(Book &a)
 {
     fflush(stdin);
-    std::cout << "Nhap ten sach: ";
-    std::cin.getline(a.title, 100);
+    cout << "Nhap ten sach: ";
+    cin.getline(a.title, 100);
     fflush(stdin);
-    std::cout << "Nhap danh sach tac gia: ";
+    cout << "Nhap danh sach tac gia: ";
     inputListAuthors(a.Authors);
-    std::cout << "Nhap nam xuat ban: ";
-    std::cin >> a.yearOfPublication;
+    cout << "Nhap nam xuat ban: ";
+    cin >> a.yearOfPublication;
 }
 void addBooks(Book listBooks[], int &length)
 {
-    std::cout << "Nhap so sach can them: ";
+    cout << "Nhap so sach can them: ";
     int canthem = 0;
-    std::cin >> canthem;
+    cin >> canthem;
     int i = length;
     length += canthem;
     for (int i = length; i < canthem; i++)
     {
-        std::cout << "Nhap thong tin cuon sach thu " << i + 1 << ":\n";
+        cout << "Nhap thong tin cuon sach thu " << i + 1 << ":\n";
         inputBook(listBooks[i]);
     }
 }
 void inputListBook(Book listBooks[], int &length)
 {
-    std::cout << "Nhap so luong sach: ";
-    std::cin >> length;
+    cout << "Nhap so luong sach: ";
+    cin >> length;
     for (int i = 0; i < length; i++)
     {
-        std::cout << "Nhap thong tin cuon sach thu " << i + 1 << ":\n";
+        cout << "Nhap thong tin cuon sach thu " << i + 1 << ":\n";
         inputBook(listBooks[i]);
     }
 }
@@ -70,11 +70,11 @@ void display(Book listBooks[], int length)
 {
     for (int i = 0; i < length; i++)
     {
-        std::cout << endl
-                  << i + 1 << ". ";
-        std::cout << "Ten sach: " << listBooks[i].title << endl;
+        cout << endl
+             << i + 1 << ". ";
+        cout << "Ten sach: " << listBooks[i].title << endl;
         showListAuthors(listBooks[i].Authors);
-        std::cout << "Nam xuat ban: " << listBooks[i].yearOfPublication << endl;
+        cout << "Nam xuat ban: " << listBooks[i].yearOfPublication << endl;
     }
 }
 bool CompareTwoCharArr(char a[], char b[])
@@ -95,10 +95,10 @@ bool CompareTwoCharArr(char a[], char b[])
 }
 bool findBook(Book listBooks[], int length, Book &cantim)
 {
-    std::cout << "\nnhap ten sach can tim: ";
+    cout << "\nnhap ten sach can tim: ";
     fflush(stdin);
     char title[100];
-    std::cin.getline(title, 100);
+    cin.getline(title, 100);
     for (int i = 0; i < length; i++)
     {
         if (CompareTwoCharArr(listBooks[i].title, title))
@@ -113,45 +113,73 @@ void EditBookData(Book listBooks[], int length)
 {
     display(listBooks, length);
     int cansua;
-    std::cout << "\nnhap vi tri cuon sach can sua: ";
-    std::cin >> cansua;
+    cout << "\nnhap vi tri cuon sach can sua: ";
+    cin >> cansua;
     while (cansua < 1 || cansua > length)
     {
-        std::cout << "nhap lai: ";
-        std::cin >> cansua;
+        cout << "nhap lai: ";
+        cin >> cansua;
     }
     int choose;
-    std::cout << "1. Tensach, 2.Tac gia, 3. Nam XB. Nhap thong tin muon sua: (1/2/3)" << endl;
-    std::cin >> choose;
+    cout << "1. Tensach, 2.Tac gia, 3. Nam XB. Nhap thong tin muon sua: (1/2/3)" << endl;
+    cin >> choose;
     switch (choose)
     {
     case 1:
-        std::cout << "Nhap ten sach: ";
+        cout << "Nhap ten sach: ";
         fflush(stdin);
-        std::cin.getline(listBooks[cansua - 1].title, 100);
+        cin.getline(listBooks[cansua - 1].title, 100);
         break;
     case 2:
-        std::cout << "Nhap danh sach tac gia: ";
+        cout << "Nhap danh sach tac gia: ";
         inputListAuthors(listBooks[cansua - 1].Authors);
         break;
     case 3:
-        std::cout << "Nhap nam xuat ban: ";
-        std::cin >> listBooks[cansua - 1].yearOfPublication;
+        cout << "Nhap nam xuat ban: ";
+        cin >> listBooks[cansua - 1].yearOfPublication;
         break;
 
     default:
-        std::cout << "lua chon khong hop le";
+        cout << "lua chon khong hop le";
         break;
     }
-    std::cout << "thanh cong";
+    cout << "thanh cong";
 }
+void Delete(Book listBooks[], int &length)
+{
+    char a[100];
+    cout << "Nhap ten sach can xoa: ";
+    fflush(stdin);
+    cin.getline(a, 100);
+    int i = 0;
+    int newlength;
+    while (CompareTwoCharArr(a, listBooks[i].title) && i < length)
+    {
+        i++;
+    }
+    if (i < length)
+    {
+
+        for (; i < length; i++)
+        {
+            listBooks[i] = listBooks[i + 1];
+        }
+        length--;
+        cout << "xoa thanh cong!";
+    }else{
+        cout << "khong tim thay sach can xoa!";
+    }
+    
+}
+
 void Menu()
 {
-    std::cout << "\n\t MENU" << endl;
-    std::cout << "1. them sach." << endl;
-    std::cout << "2. hien thi." << endl;
-    std::cout << "3. tim kiem." << endl;
-    std::cout << "4. sua thong tin." << endl;
+    cout << "\n\t MENU" << endl;
+    cout << "1. them sach." << endl;
+    cout << "2. hien thi." << endl;
+    cout << "3. tim kiem." << endl;
+    cout << "4. sua thong tin." << endl;
+    cout << "5. xoa" << endl;
 }
 int main()
 {
@@ -162,8 +190,8 @@ int main()
     {
         int choose = 0;
         Menu();
-        std::cout << "Nhap lua chon (1/2/3/4): ";
-        std::cin >> choose;
+        cout << "Nhap lua chon (1/2/3/4/5): ";
+        cin >> choose;
         switch (choose)
         {
         case 1:
@@ -179,7 +207,7 @@ int main()
         case 2:
             if (length == 0)
             {
-                std::cout << "danh sach rong!";
+                cout << "danh sach rong!";
             }
             else
             {
@@ -190,29 +218,29 @@ int main()
         case 3:
             if (length == 0)
             {
-                std::cout << "danh sach rong!";
+                cout << "danh sach rong!";
             }
             else
             {
                 Book timkiem;
                 if (findBook(listBooks, length, timkiem))
                 {
-                    std::cout << "tim thay: ";
-                    std::cout << endl;
-                    std::cout << "Ten sach: " << timkiem.title << "   ";
+                    cout << "tim thay: ";
+                    cout << endl;
+                    cout << "Ten sach: " << timkiem.title << "   ";
                     showListAuthors(timkiem.Authors);
-                    std::cout << "Nam xuat ban: " << timkiem.yearOfPublication << "   ";
+                    cout << "Nam xuat ban: " << timkiem.yearOfPublication << "   ";
                 }
                 else
                 {
-                    std::cout << "khong tim thay";
+                    cout << "khong tim thay";
                 }
             }
             break;
         case 4:
             if (length == 0)
             {
-                std::cout << "danh sach rong!";
+                cout << "danh sach rong!";
             }
             else
             {
@@ -220,11 +248,15 @@ int main()
             }
 
             break;
+        case 5:
+            Delete(listBooks, length);
+            break;
         default:
+            cout << "lu chon khong hop le";
             break;
         }
-        std::cout << "\nban co muon tiep tuc? (Y/N): ";
-        std::cin >> tieptuc;
+        cout << "\nban co muon tiep tuc? (Y/N): ";
+        cin >> tieptuc;
         if (toupper(tieptuc) == 'N')
         {
             break;

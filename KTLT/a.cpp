@@ -1,12 +1,15 @@
 #include <iostream>
 using namespace std;
 
-int UCLN(int a,int b){
-    if(a%b==0) return b;
-    return UCLN(b, a%b);
+
+// tìm chữ số có giá trị lớn nhất trong 1 số nguyên sử dụng đệ qui
+int MAX(int n, int max = 0){
+    if(n == 0) return max;
+    if(n%10>max) max = n%10;
+    return MAX(n/10, max);
 }
-int main(int argc, char const *argv[])
+int main()
 {
-    cout << UCLN(1000,15);
+    cout << MAX(8234);
     return 0;
 }
