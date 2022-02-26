@@ -12,6 +12,8 @@ struct Book
     ListAuthors Authors;
     int yearOfPublication;
 };
+
+
 void inputListAuthors(ListAuthors &listAuthor)
 {
     cout << "\nnhap so luong tac gia: ";
@@ -23,6 +25,8 @@ void inputListAuthors(ListAuthors &listAuthor)
         cin.getline(listAuthor.nameOfAuthors[i], 100);
     }
 }
+
+
 void showListAuthors(ListAuthors listAuthor)
 {
     cout << "ten tac gia: ";
@@ -32,6 +36,8 @@ void showListAuthors(ListAuthors listAuthor)
     }
     cout << endl;
 }
+
+
 void inputBook(Book &a)
 {
     fflush(stdin);
@@ -43,6 +49,8 @@ void inputBook(Book &a)
     cout << "Nhap nam xuat ban: ";
     cin >> a.yearOfPublication;
 }
+
+
 void addBooks(Book listBooks[], int &length)
 {
     cout << "Nhap so sach can them: ";
@@ -56,6 +64,8 @@ void addBooks(Book listBooks[], int &length)
         inputBook(listBooks[i]);
     }
 }
+
+
 void inputListBook(Book listBooks[], int &length)
 {
     cout << "Nhap so luong sach: ";
@@ -66,6 +76,8 @@ void inputListBook(Book listBooks[], int &length)
         inputBook(listBooks[i]);
     }
 }
+
+
 void display(Book listBooks[], int length)
 {
     for (int i = 0; i < length; i++)
@@ -77,6 +89,8 @@ void display(Book listBooks[], int length)
         cout << "Nam xuat ban: " << listBooks[i].yearOfPublication << endl;
     }
 }
+
+
 bool CompareTwoCharArr(char a[], char b[])
 {
     int ia = 0, ib = 0;
@@ -93,6 +107,8 @@ bool CompareTwoCharArr(char a[], char b[])
     }
     return false;
 }
+
+
 bool findBook(Book listBooks[], int length, Book &cantim)
 {
     cout << "\nnhap ten sach can tim: ";
@@ -109,6 +125,8 @@ bool findBook(Book listBooks[], int length, Book &cantim)
     }
     return false;
 }
+
+
 void EditBookData(Book listBooks[], int length)
 {
     display(listBooks, length);
@@ -145,6 +163,8 @@ void EditBookData(Book listBooks[], int length)
     }
     cout << "thanh cong";
 }
+
+
 void Delete(Book listBooks[], int &length)
 {
     char a[100];
@@ -166,10 +186,11 @@ void Delete(Book listBooks[], int &length)
         }
         length--;
         cout << "xoa thanh cong!";
-    }else{
+    }
+    else
+    {
         cout << "khong tim thay sach can xoa!";
     }
-    
 }
 
 void Menu()
@@ -181,6 +202,8 @@ void Menu()
     cout << "4. sua thong tin." << endl;
     cout << "5. xoa" << endl;
 }
+
+
 int main()
 {
     Book listBooks[100];
