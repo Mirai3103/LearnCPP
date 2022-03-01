@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-void swap(int &a, int &b)
+void Swap(int &a, int &b)
 {
     int temp = a;
     a = b;
@@ -35,11 +35,12 @@ void BubbleSort(int *arr, int length)
         {
             if (arr[j] < arr[j - 1])
             {
-                swap(arr[j], arr[j - 1]);
+                Swap(arr[j], arr[j - 1]);
             }
         }
     }
 }
+
 void SelectionSort(int *arr, int length)
 {
     int min;
@@ -53,7 +54,7 @@ void SelectionSort(int *arr, int length)
                 minKey = j;
             }
         }
-        swap(arr[i], arr[minKey]);
+        Swap(arr[i], arr[minKey]);
     }
 }
 int main()
@@ -64,7 +65,7 @@ int main()
         cout << arr[i] << ", ";
     }
     cout << endl;
-    int n = 12;
+    int n = sizeof(arr)/sizeof(int);
     SelectionSort(arr, n);
     for (int i = 0; i < 12; i++)
     {
