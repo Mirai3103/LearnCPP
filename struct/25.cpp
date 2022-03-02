@@ -5,14 +5,14 @@ using namespace std;
 
 struct DuongThang
 {
-    int a;
-    int b;
-    int c;
+    double a;
+    double b;
+    double c;
 };
 struct GiaoDiem
 {
-    int x;
-    int y;
+    double x;
+    double y;
     DuongThang * linear1;
     DuongThang * linear2;
 };
@@ -39,8 +39,8 @@ void giaoDiem(DuongThang l1, DuongThang l2, GiaoDiem &g)
 {
     g.linear1 = &l1;
     g.linear2 = &l2;
-    g.x = (l2.b * l1.c - l1.b * l2.c) / (l2.a * l1.b - l1.a * l2.b);
-    g.y = (l1.a * l2.c - l2.a * l1.c) / (l2.a * l1.b - l1.a * l2.b);
+    g.x = (l1.c*l2.b-l2.c*l1.b)*1.0/(l1.a*l2.b-l2.a*l1.b);
+    g.y = (l1.a*g.x+l1.c)*1.0/-l1.b;
 }
 int factorial(int n)
 {
@@ -50,7 +50,7 @@ int factorial(int n)
         return n * factorial(n - 1);
 }
 double Goc(GiaoDiem g){
-    int cos = (g.linear1->a * g.linear2->a + g.linear1->b * g.linear2->b) / (sqrt(g.linear1->a * g.linear1->a + g.linear1->b * g.linear1->b) * sqrt(g.linear2->a * g.linear2->a + g.linear2->b * g.linear2->b));
+    double cos = (g.linear1->a * g.linear2->a + g.linear1->b * g.linear2->b)*1.0 / (sqrt(g.linear1->a * g.linear1->a + g.linear1->b * g.linear1->b) * sqrt(g.linear2->a * g.linear2->a + g.linear2->b * g.linear2->b));
     return acos(cos);
 }
 double *ListGoc(GiaoDiem *listGiaoDiem, int k){
@@ -68,7 +68,13 @@ int main(int argc, char const *argv[])
     cin >> n;
     DuongThang *listLinear = new DuongThang[n];
     inputList(listLinear, n);
+    for (int i = 0; i < n; i++)
+    {
+        printf("%dx + %dy + %d = 0\n", listLinear[i].a, listLinear[i].b, listLinear[i].c);
+    }
+    
     GiaoDiem *LisGiaoDiem = new GiaoDiem[factorial(n)/(factorial(2)*factorial(n-2))];
+    cout << factorial(n)/(factorial(2)*factorial(n-2)) << endl;
     int k = 0;
     for (int i = 0; i < n; i++)
     {
