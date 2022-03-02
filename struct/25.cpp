@@ -2,7 +2,6 @@
 #include <stdio.h>
 using namespace std;
 
-// create struct Linear aX+bY+C=0
 struct DuongThang
 {
     int a;
@@ -35,7 +34,6 @@ void inputList(DuongThang *l, int n)
         input(l[i]);
     }
 }
-// tìm giao điểm của 2 đường thẳng
 void giaoDiem(DuongThang l1, DuongThang l2, GiaoDiem &g)
 {
     g.linear1 = &l1;
