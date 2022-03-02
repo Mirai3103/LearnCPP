@@ -35,7 +35,7 @@ void inputList(DuongThang *l, int n)
         input(l[i]);
     }
 }
-void giaoDiem(DuongThang l1, DuongThang l2, GiaoDiem &g)
+void giaoDiem(DuongThang &l1, DuongThang &l2, GiaoDiem &g)
 {
     g.linear1 = &l1;
     g.linear2 = &l2;
@@ -61,7 +61,7 @@ double *ListGoc(GiaoDiem *listGiaoDiem, int k){
     }
     return listGoc;
 }
-int main(int argc, char const *argv[])
+int main()
 {
     int n;
     cout << "Nhap so luong duong thang: ";
@@ -70,7 +70,7 @@ int main(int argc, char const *argv[])
     inputList(listLinear, n);
     for (int i = 0; i < n; i++)
     {
-        printf("%dx + %dy + %d = 0\n", listLinear[i].a, listLinear[i].b, listLinear[i].c);
+        printf("%.2fx + %.2fy + %.2f = 0\n", listLinear[i].a, listLinear[i].b, listLinear[i].c);
     }
     
     GiaoDiem *LisGiaoDiem = new GiaoDiem[factorial(n)/(factorial(2)*factorial(n-2))];
