@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include <math.h>
 using namespace std;
 
 struct DuongThang
@@ -48,7 +49,18 @@ int factorial(int n)
     else
         return n * factorial(n - 1);
 }
-
+double Goc(GiaoDiem g){
+    int cos = (g.linear1->a * g.linear2->a + g.linear1->b * g.linear2->b) / (sqrt(g.linear1->a * g.linear1->a + g.linear1->b * g.linear1->b) * sqrt(g.linear2->a * g.linear2->a + g.linear2->b * g.linear2->b));
+    return acos(cos);
+}
+double *ListGoc(GiaoDiem *listGiaoDiem, int k){
+    double *listGoc = new double[k];
+    for (int i = 0; i < k; i++)
+    {
+        listGoc[i] = Goc(listGiaoDiem[i]);
+    }
+    return listGoc;
+}
 int main(int argc, char const *argv[])
 {
     int n;
@@ -69,6 +81,12 @@ int main(int argc, char const *argv[])
             cout << "Giao diem cua duong thang thu " << i + 1 << " va duong thang thu " << j + 1 << " la: " << g.x << " va " << g.y << endl;
         }
     }
+    double *listGoc = ListGoc(LisGiaoDiem, k);
+    for (int i = 0; i < k; i++)
+    {
+        cout << "Goc giao diem thu " << i + 1 << " la: " << listGoc[i] << endl;
+    }
+    delete [] listGoc;
     delete [] listLinear;
     delete [] LisGiaoDiem;
     return 0;
