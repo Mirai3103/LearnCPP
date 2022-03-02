@@ -2,141 +2,76 @@
 #include <stdio.h>
 using namespace std;
 
-
-int UCLN(int a, int b)
+// create struct Linear aX+bY+C=0
+struct DuongThang
 {
-    while (a * b != 0)
-    {
-        if (a > b)
-        {
-            a %= b;
-        }
-        else
-        {
-            b %= a;
-        }
-    }
-    return a + b;
-}
-int BCNN(int a, int b)
+    int a;
+    int b;
+    int c;
+};
+struct GiaoDiem
 {
-    return a*b/UCLN(a,b);
-}
-struct PhanSo
-{
-    int Tu;
-    int Mau;
-    PhanSo(int tu, int mau)
-    {
-        Tu = tu;
-        Mau = mau;
-    }
-    PhanSo()
-    {
-        Tu = 0;
-        Mau = 1;
-    }
-    void rutGonPhanSo()
-    {
-    int UC = UCLN(Tu, Mau);
-    Tu = Tu / UC;
-    Mau = Mau / UC;
-    }
-    // operator overloading
-    PhanSo operator+(PhanSo a)
-    {
-        int MSC = BCNN(a.Mau, this->Mau);
-        PhanSo sum((MSC / a.Mau) * a.Tu + (MSC / this->Mau) * this->Tu, MSC);
-        return sum;
-    }
-    PhanSo operator-(PhanSo a){
-        a.Tu = -1*a.Tu;
-        return *this+ a;
-    }
-    bool operator<(PhanSo a){
-        return (a.Tu * 1.0 / a.Mau - this->Tu * 1.0 / this->Mau) < 0;
-    }
-    bool operator>(PhanSo a){
-        return (this->Tu * 1.0 / this->Mau-a.Tu * 1.0 / a.Mau ) > 0;
-    }
-    bool operator==(PhanSo a){
-        return (this->Tu * 1.0 / this->Mau-a.Tu * 1.0 / a.Mau ) == 0;
-    }
-    bool operator<=(PhanSo a){
-        return *this < a || *this==a;
-    }
-    bool operator>=(PhanSo a){
-        return *this > a || *this==a;
-    }
-    bool operator!=(PhanSo a){
-        return !(*this == a);
-    }
-    void input(){
-        scanf("%d/%d", &(Tu), &(Mau));
-    }
-    void show(){
-        printf("%d/%d",Tu,Mau);
-    }
+    int x;
+    int y;
+    DuongThang * linear1;
+    DuongThang * linear2;
 };
 
-void inputArray(PhanSo *arr, int n)
+void input(DuongThang &l)
+{
+    cout << "Duong thang aX+bY+c=0" << endl;
+    cout << "Nhap a: ";
+    cin >> l.a;
+    cout << "Nhap b: ";
+    cin >> l.b;
+    cout << "Nhap c: ";
+    cin >> l.c;
+}
+void inputList(DuongThang *l, int n)
 {
     for (int i = 0; i < n; i++)
     {
-        cout << "nhap phan so thu " << i + 1 << " (a/b): ";
-        arr[i].input();
+        cout << "Duong thang thu " << i + 1 << endl;
+        input(l[i]);
     }
+}
+// tìm giao điểm của 2 đường thẳng
+void giaoDiem(DuongThang l1, DuongThang l2, GiaoDiem &g)
+{
+    g.linear1 = &l1;
+    g.linear2 = &l2;
+    g.x = (l2.b * l1.c - l1.b * l2.c) / (l2.a * l1.b - l1.a * l2.b);
+    g.y = (l1.a * l2.c - l2.a * l1.c) / (l2.a * l1.b - l1.a * l2.b);
+}
+int factorial(int n)
+{
+    if (n == 0)
+        return 1;
+    else
+        return n * factorial(n - 1);
 }
 
-void tongCacPhanSoTrongMang(PhanSo *arr, int n, PhanSo &sum)
-{
-    for (int i = 0; i < n; i++)
-    {
-        sum = sum + arr[i];
-        sum.rutGonPhanSo();
-    }
-}
-
-void swap(PhanSo &a, PhanSo &b)
-{
-    PhanSo c = a;
-    a = b;
-    b = c;
-}
-void sort(PhanSo *arr, int n)
-{
-    for (int i = 0; i < n - 1; i++)
-    {
-        for (int j = i; j < n; j++)
-        {
-            if (arr[i]> arr[j])
-            {
-                swap(arr[i], arr[j]);
-            }
-        }
-    }
-}
-void xuatMang(PhanSo *a, int n)
-{
-    cout << "\nxuat mang phan so: \n";
-    for (int i = 0; i < n; i++)
-    {
-        cout << a[i].Tu << "/" << a[i].Mau << "; ";
-    }
-}
-int main()
+int main(int argc, char const *argv[])
 {
     int n;
-    cout << "nhap so phan tu: ";
+    cout << "Nhap so luong duong thang: ";
     cin >> n;
-    PhanSo *arr = new PhanSo[n];
-    inputArray(arr, n);
-    PhanSo sum;
-    tongCacPhanSoTrongMang(arr, n, sum);
-    cout << "tong: " << sum.Tu << "/" << sum.Mau;
-    sort(arr, n);
-    xuatMang(arr, n);
-    delete[] arr;
-    arr = nullptr;
+    DuongThang *listLinear = new DuongThang[n];
+    inputList(listLinear, n);
+    GiaoDiem *LisGiaoDiem = new GiaoDiem[factorial(n)/(factorial(2)*factorial(n-2))];
+    int k = 0;
+    for (int i = 0; i < n; i++)
+    {
+        for(int j = i+1; j < n; j++)
+        {
+            GiaoDiem g;
+            giaoDiem(listLinear[i], listLinear[j], g);
+            LisGiaoDiem[k] = g;
+            k++;
+            cout << "Giao diem cua duong thang thu " << i + 1 << " va duong thang thu " << j + 1 << " la: " << g.x << " va " << g.y << endl;
+        }
+    }
+    delete [] listLinear;
+    delete [] LisGiaoDiem;
     return 0;
 }
