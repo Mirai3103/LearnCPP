@@ -1,6 +1,6 @@
 #include <iostream>
-#include <stdio.h>
 #include <math.h>
+#include<iomanip>
 using namespace std;
 
 struct DuongThang
@@ -49,9 +49,13 @@ int factorial(int n)
     else
         return n * factorial(n - 1);
 }
+double rad2deg(double rad)
+{
+    return rad * 180 / M_PI;
+}
 double Goc(GiaoDiem g){
     double cos = (g.linear1->a * g.linear2->a + g.linear1->b * g.linear2->b)*1.0 / (sqrt(g.linear1->a * g.linear1->a + g.linear1->b * g.linear1->b) * sqrt(g.linear2->a * g.linear2->a + g.linear2->b * g.linear2->b));
-    return acos(cos);
+    return rad2deg(acos(cos));
 }
 double *ListGoc(GiaoDiem *listGiaoDiem, int k){
     double *listGoc = new double[k];
@@ -61,6 +65,7 @@ double *ListGoc(GiaoDiem *listGiaoDiem, int k){
     }
     return listGoc;
 }
+
 int main()
 {
     int n;
@@ -90,7 +95,7 @@ int main()
     double *listGoc = ListGoc(LisGiaoDiem, k);
     for (int i = 0; i < k; i++)
     {
-        cout << "Goc giao diem thu " << i + 1 << " la: " << listGoc[i] << endl;
+        cout << "Goc giao diem thu " << i + 1 << " la: " <<setprecision(n)<<fixed << listGoc[i] << endl;
     }
     delete [] listGoc;
     delete [] listLinear;
