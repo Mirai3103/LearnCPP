@@ -6,55 +6,25 @@ void Swap(int &a, int &b)
     a = b;
     b = temp;
 }
-// void insert(int *arr, int length, int element){
-//     for (int i = length-1; i >=0; i++)
-//     {
-
-//     }
-
-// }
-void InsertionSort(int *arr, int length)
+void insertionSort(int *arr, int n)
 {
-    for (int i = 1; i < length; i++)
+    int j;
+    for (int i = 1; i < n - 1; i++)
     {
-        int key = arr[i];
-        int j = i - 1;
-        while (j >= 0 && arr[j] > key)
+        j = i + 1;
+        int pos = arr[j]; // 9
+        for (; j >= 0 && arr[j - 1] > pos; j--)
         {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-        arr[j + 1] = key;
-    }
-}
-void BubbleSort(int *arr, int length)
-{
-    for (int i = 0; i < length; i++)
-    {
-        for (int j = length - 1; j > i; j--)
-        {
-            if (arr[j] < arr[j - 1])
+            if (arr[j - 1] > pos)
             {
-                Swap(arr[j], arr[j - 1]);
+                arr[j] = arr[j - 1];
+                for (int i = 0; i < 12; i++)
+                {
+                    cout << arr[i] << ", ";
+                }
             }
         }
-    }
-}
-
-void SelectionSort(int *arr, int length)
-{
-    int min;
-    for (int i = 0; i < length-1; i++)
-    {
-        int minKey = i;
-        for (int j = i; j < length; j++)
-        {
-            if (arr[j] < arr[minKey])
-            {
-                minKey = j;
-            }
-        }
-        Swap(arr[i], arr[minKey]);
+        arr[j] = pos;
     }
 }
 int main()
@@ -65,8 +35,8 @@ int main()
         cout << arr[i] << ", ";
     }
     cout << endl;
-    int n = sizeof(arr)/sizeof(int);
-    SelectionSort(arr, n);
+    int n = sizeof(arr) / sizeof(int);
+    insertionSort(arr, n);
     for (int i = 0; i < 12; i++)
     {
         cout << arr[i] << ", ";
