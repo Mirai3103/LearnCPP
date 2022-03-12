@@ -17,13 +17,14 @@ struct Book
 };
 
 // Khai báo prototype các hàm
+void showMenu();
 void inputABook(Book &book);
 void inputAuthorsList(ListAuthors *authors);
 Book *inputBooksList(int &length);
 void showABookInfo(Book book);
 void showBooksList(Book *booksList, int length);
 Book *findBookByName(Book *booksList, int length);
-void *findBookAndUpdate(Book *booksList, int length);
+void findBookAndUpdate(Book *booksList, int length);
 void addBook(Book *booksList, int &length);
 void insertBook(Book *booksList, int &length);
 void deleteBook(Book *booksList, int &length);
@@ -31,11 +32,57 @@ void deleteBook(Book *booksList, int &length);
 // Hàm main
 int main()
 {
+    int choice;
+    Book *booksList;
+    int length;
+    do
+    {
+        showMenu();
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            booksList = inputBooksList(length);
+            break;
+        case 2:
+            showBooksList(booksList, length);
+            break;
+        case 3:
+            findBookByName(booksList, length);
+            break;
+        case 4:
+            findBookAndUpdate(booksList, length);
+            break;
+        case 5:
+            addBook(booksList, length);
+            break;
+        case 6:
+            insertBook(booksList, length);
+            break;
+        case 7:
+            deleteBook(booksList, length);
+            break;
+        case 8:
+            break;
+        default:
+            cout << "Nhap sai, moi nhap lai!" << endl;
+            break;
+        }
+    } while (choice != 8);
     return 0;
 }
 
 // các hàm
-
+void showMenu()
+{
+    cout << "1. Nhap  cuon sach" << endl;
+    cout << "2. Hien thi danh sach cac cuon sach" << endl;
+    cout << "3. Tim sach theo ten" << endl;
+    cout << "4. Cap nhat thong tin sach" << endl;
+    cout << "5. Them sach vao danh sach" << endl;
+    cout << "6. Them sach vao vi tri bat ki" << endl;
+    cout << "7. Thoat" << endl;
+}
 void inputAuthorsList(ListAuthors *authors)
 {
     cout << "how many authors do you want input? ";
@@ -89,12 +136,14 @@ void showABookInfo(Book book)
     }
     cout << endl;
     cout << "Year published: " << book.yearOfPublication << endl;
+    cout << "==========================================" << endl;
 }
 
 void showBooksList(Book *booksList, int length)
 {
     for (int i = 0; i < length; i++)
     {
+        cout << "index: " << i << endl;
         showABookInfo(booksList[i]);
     }
 }
@@ -115,7 +164,7 @@ Book *findBookByName(Book *booksList, int length)
     return NULL;
 }
 
-void *findBookAndUpdate(Book *booksList, int length)
+void findBookAndUpdate(Book *booksList, int length)
 {
     Book *book = findBookByName(booksList, length);
     if (book != NULL)
@@ -165,6 +214,7 @@ void addBook(Book *booksList, int &length)
 
 void insertBook(Book *booksList, int &length)
 {
+    showBooksList(booksList, length);
     Book *newBookList = new Book[length + 1];
     int index;
     cout << "input the index of book you want to insert: ";
@@ -187,7 +237,9 @@ void deleteBook(Book *booksList, int &length)
 {
     Book *newBookList = new Book[length - 1];
     int index;
-    cout << "input the index of book you want to delete: ";
+    showBooksList(booksList, length);
+    cout
+        << "input the index of book you want to delete: ";
     cin >> index;
     for (int i = 0; i < index; i++)
     {
