@@ -1,3 +1,5 @@
+/*Câu 3: Tìm các dãy nhị phân có độ dài n, với n là số nguyên dương.
+ Ví dụ n=3 thì có các kết quả: 000, 001, 010, 011, 100, 101, 110, 111.*/
 #include <iostream>
 using namespace std;
 int arr[100];
@@ -11,7 +13,7 @@ void inChuoiNhiPhan(int n)
 }
 void timChuoiNhiPhan(int n, int index = 0)
 {
-    if (index == 3)
+    if (index == n)
     {
         inChuoiNhiPhan(n);
     }
@@ -26,7 +28,10 @@ void timChuoiNhiPhan(int n, int index = 0)
 }
 
 int main()
+
 {
-    timChuoiNhiPhan(3);
+    int n;
+    cin >> n;
+    timChuoiNhiPhan(n); // = 2^4 = 16
     return 0;
 }

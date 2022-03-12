@@ -29,7 +29,7 @@ void show()
     cout << endl;
     for (int i = 0; i < 64; i++)
     {
-        printf("Step %d: %d, %d \n", i + 1, listStep[i].row, listStep[i].col);
+        printf("Buoc %d: %d, %d \n", i + 1, listStep[i].row, listStep[i].col);
     }
     cout << "=================";
 }

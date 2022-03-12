@@ -1,3 +1,4 @@
+// Câu 1: Đếm số lượng chữ số nguyên dương của số n. Ví dụ: 2357 => 4 chữ số
 #include <iostream>
 using namespace std;
 
@@ -12,6 +13,8 @@ int demNguyenDuong(int n) // > 0
 
 int main()
 {
-    cout << demNguyenDuong(2397);
+    int n;
+    cin >> n;
+    cout << demNguyenDuong(n);
     return 0;
 }
