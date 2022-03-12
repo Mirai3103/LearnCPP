@@ -19,7 +19,8 @@ void nhapngaunhien(int arr[], int n)
         arr[i] = rand() % x;
     }
 }
-bool compare(int x, int y){
+bool compare(int x, int y)
+{
     return x > y;
 }
 void swap(int &a, int &b)
@@ -28,60 +29,67 @@ void swap(int &a, int &b)
     a = b;
     b = temp;
 }
-void merge(int *arr,int l,int m,int r){
-    int lenght1 = m - l + 1;
-    int lenght2 = r - m;
-    int *temp1 =  new int[lenght1];
-    int *temp2 =  new int[lenght2];
-    for (int i = 0; i < lenght1; i++)
+void merge(int *arr, int l, int m, int r)
+{
+    int length1 = m - l + 1;
+    int length2 = r - m;
+    int *temp1 = new int[length1];
+    int *temp2 = new int[length2];
+    for (int i = 0; i < length1; i++)
     {
-        temp1[i] = arr[i+l];
+        temp1[i] = arr[i + l];
     }
-    for (int i = 0; i < lenght1; i++)
+    for (int i = 0; i < length1; i++)
     {
-        temp2[i] = arr[i+m+1];
+        temp2[i] = arr[i + m + 1];
     }
 
-    int i =  0; int j = 0;int k = l;
-    while (i < lenght1 && j < lenght2)
+    int i = 0;
+    int j = 0;
+    int k = l;
+    while (i < length1 && j < length2)
     {
-        if(temp1[i]<temp2[j]){
+        if (temp1[i] < temp2[j])
+        {
             arr[k++] = temp1[i++];
-        }else{
-            arr[k++] = temp2[j++]; 
+        }
+        else
+        {
+            arr[k++] = temp2[j++];
         }
     }
-    for ( i ; i < lenght1; i++)
+    for (i; i < length1; i++)
     {
         arr[k++] = temp1[i];
     }
-    for ( j ; j < lenght2; j++)
+    for (j; j < length2; j++)
     {
         arr[k++] = temp2[j];
     }
-    delete [] temp1;
-    delete [] temp2;
-    
+    delete[] temp1;
+    delete[] temp2;
 }
-void mergesort(int *a, int l, int r){
-    if(l<r){
-        int mid = (l+r)/2;
-        mergesort(a,l,mid);
-        mergesort(a,mid+1,r);
-        xuatmang(a,10);
-        merge(a,l,mid,r);
+void mergesort(int *a, int l, int r)
+{
+    if (l < r)
+    {
+        int mid = (l + r) / 2;
+        mergesort(a, l, mid);
+        mergesort(a, mid + 1, r);
+        merge(a, l, mid, r);
     }
 }
-void sort(int *arr,int length){
-    mergesort(arr,0,length-1);
+void sort(int *arr, int length)
+{
+    mergesort(arr, 0, length - 1);
 }
 int main()
 {
     int n;
     n = 10;
-    int arr[10] = {8,2,0,1,6,5,9,3,4,-1};
-    sort(arr,10);
-    xuatmang(arr,10);
- 
+    int arr[10] = {8, 2, 0, 1, 6, 5, 9, 3, 4, -1};
+    sort(arr, 10);
+    xuatmang(arr, 10);
+
     return 0;
 }
