@@ -52,7 +52,7 @@ void Backing(int i, int n)
         }
     }
 }
-//tìm giá trị lớn nhất của mảng sử dụng đệ qui
+// tìm giá trị lớn nhất của mảng sử dụng đệ qui
 int Max(int *arr, int l, int r)
 {
     if (l == r)
@@ -69,16 +69,20 @@ int Max(int *arr, int l, int r)
         return maxRight;
     }
 }
-int BinarySearch(int *arr, int l, int r ){
-    if(l <= r){
+int BinarySearch(int *arr, int l, int r)
+{
+    if (l <= r)
+    {
         int mid = (l + r) / 2;
-        if(arr[mid] == mid)
+        if (arr[mid] == mid)
             return mid;
-        else if(arr[mid] > mid)
+        else if (arr[mid] > mid)
             return BinarySearch(arr, l, mid - 1);
         else
             return BinarySearch(arr, mid + 1, r);
-    }else{
+    }
+    else
+    {
         return -1;
     }
 }
@@ -105,21 +109,24 @@ int Multiply(int *a, int *b, int *c, int n)
     }
     return p1 + p2 + p3;
 }
-int bai4(int n){
-    if(n==1) return 1;
+int An(int n)
+{
+    if (n == 1)
+        return 1;
     int s = 0;
-    for(int i = 1; i <= n; i++){
-        s += n*bai4(n-i);
+    for (int i = 1; i <= n; i++)
+    {
+        s += n * An(n - i);
     }
     return s;
 }
-
+// convert  An(n) using Linear recursion
 
 int main()
 {
     // int arr[] ={1,4,111,16,12,20,22,0,100,11,18};
     // cout << Max(arr,0,10);
-    cout << bai4(4);
+    cout << An(4);
     return 0;
 }
 

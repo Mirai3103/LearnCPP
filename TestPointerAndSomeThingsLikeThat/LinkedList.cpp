@@ -1,5 +1,4 @@
 #include <iostream>
-#include <bits/stdc++.h>
 
 using namespace std;
 struct Node
@@ -36,7 +35,8 @@ public:
         lastNode = temp;
         return true;
     }
-    bool addFist(int valu){
+    bool addFist(int valu)
+    {
         if (firstNode == NULL)
         {
             firstNode = new Node();
@@ -45,7 +45,7 @@ public:
             lastNode = firstNode;
             return true;
         }
-        Node* temp = new Node();
+        Node *temp = new Node();
         temp->value = valu;
         temp->next = firstNode;
         firstNode = temp;
@@ -54,12 +54,14 @@ public:
     bool deleteFirstValue(int valu)
     {
         Node *nextNode;
-        nextNode = this->firstNode ;
+        nextNode = this->firstNode;
         while (nextNode != NULL)
         {
-            if(nextNode->next!=NULL){
-                if(nextNode->next->value == valu){
-                    Node* WillDelete = nextNode->next;
+            if (nextNode->next != NULL)
+            {
+                if (nextNode->next->value == valu)
+                {
+                    Node *WillDelete = nextNode->next;
                     nextNode->next = nextNode->next->next;
                     delete WillDelete;
                     return true;
@@ -72,12 +74,14 @@ public:
     void deleteAllValue(int valu)
     {
         Node *nextNode;
-        nextNode = this->firstNode ;
+        nextNode = this->firstNode;
         while (nextNode != NULL)
         {
-            if(nextNode->next!=NULL){
-                if(nextNode->next->value == valu){
-                    Node* WillDelete = nextNode->next;
+            if (nextNode->next != NULL)
+            {
+                if (nextNode->next->value == valu)
+                {
+                    Node *WillDelete = nextNode->next;
                     nextNode->next = nextNode->next->next;
                     delete WillDelete;
                 }
