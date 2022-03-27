@@ -1,81 +1,115 @@
+
+#include <stdio.h>
 #include <iostream>
+#include <math.h>
 
 using namespace std;
+
 struct Node
 {
-	int value;
+	int data;
 	Node *next;
 };
-struct LinkedList
+
+typedef struct Node *node;
+
+node makeNode(int x)
+{
+	node temp = new Node();
+	temp->data = x;
+	temp->next = NULL;
+	return temp;
+};
+
+bool empty(node a)
+{
+	return a == NULL;
+};
+
+void insertLast(node &a, int x)
+{
+	node temp = makeNode(x);
+	if (a == NULL)
+	{
+		a = temp;
+	}
+	else
+	{
+		node p = a;
+		while (p->next != NULL)
+		{
+			p = p->next;
+		}
+		p->next = temp;
+	}
+}
+
+void enter(node &a, int &n)
+{
+	int x;
+	for (int i = 0; i < n; i++)
+	{
+		cin >> x;
+		insertLast(a, x);
+	}
+}
+
+void print(node a)
 {
 
-	Node *lastNode;
-	Node *firstNode;
-};
-void add(LinkedList *list, float value)
-{
-	if (list->firstNode == NULL)
+	while (a != NULL)
 	{
-		list->firstNode = new Node();
-		list->firstNode->value = value;
-		list->firstNode->next = NULL;
-		list->lastNode = list->firstNode;
-		return;
+		cout << a->data << "\t";
+		a = a->next;
 	}
-	Node *temp = new Node();
-	temp->value = value;
-	temp->next = NULL;
-	list->lastNode->next = temp;
-	list->lastNode = temp;
 }
-void addFirst(LinkedList *list, float value)
+
+bool checkSNT(int n)
 {
-	if (list->firstNode == NULL)
+	for (int i = 2; i <= sqrt(n); i++)
 	{
-		list->firstNode = new Node();
-		list->firstNode->value = value;
-		list->firstNode->next = NULL;
-		list->lastNode = list->firstNode;
-		return;
+		if ()
+			return false;
 	}
-	Node *temp = new Node();
-	temp->value = value;
-	temp->next = list->firstNode;
-	list->firstNode = temp;
+	return n >= 2;
 }
+
+int tongSNT(node a)
+{
+	int tong = 0;
+	if (a == NULL)
+	{
+	}
+
+	else
+	{
+
+		while (a != NULL)
+		{
+			if (checkSNT(a->data))
+			{
+
+				tong += a->data;
+				printf("%d\n", tong);
+			}
+			a = a->next;
+		}
+	}
+	return tong;
+}
+
 int main()
 {
-	LinkedList *list = new LinkedList();
-	add(list, 1);
-	add(list, 2);
-	add(list, 3);
-	add(list, 4);
-	add(list, 5);
-	add(list, 6);
-	add(list, 7);
-	add(list, 8);
-	float x = 4.6;
-	Node *nextNode = list->firstNode;
-	float average = 0;
-	int length = 0;
-	while (nextNode != NULL)
-	{
-		average += nextNode->value;
-		nextNode = nextNode->next;
-		length++;
-	}
-	average = average / length;
-	nextNode = list->firstNode;
-	float min = abs(nextNode->value - average);
-	Node *nearestNode = nextNode;
-	while (nextNode != NULL)
-	{
-		if (abs(nextNode->value - average) < min)
-		{
-			min = abs(nextNode->value - average);
-			nearestNode = nextNode;
-		}
-		nextNode = nextNode->next;
-	}
+	int n;
+	node head = NULL;
+	cout << "Nhap so luong phan tu cua DSLK: ";
+	cin >> n;
+	cout << "Nhap cac gia tri cua DSLK: " << endl;
+	enter(head, n);
+	cout << "DSLK da nhap la: " << endl;
+	print(head);
+	cout << checkSNT(5);
+	cout << "\n"
+		 << tongSNT(head);
 	return 0;
 }

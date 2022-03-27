@@ -8,7 +8,6 @@ struct ListAuthors
     string *authorsName;
     int length;
 };
-
 struct Book
 {
     string title;
@@ -25,7 +24,7 @@ void showABookInfo(Book book);
 void showBooksList(Book *booksList, int length);
 Book *findBookByName(Book *booksList, int length);
 void findBookAndUpdate(Book *booksList, int length);
-void addBook(Book *booksList, int &length);
+void addBook(Book **booksList, int &length);
 void insertBook(Book *booksList, int &length);
 void deleteBook(Book *booksList, int &length);
 
@@ -33,17 +32,16 @@ void deleteBook(Book *booksList, int &length);
 int main()
 {
     int choice;
-    Book *booksList;
-    int length;
+    Book *booksList = NULL;
+    int length = 0;
+    cout << "Danh sach trong, yeu cau nhap them sach: " << endl;
+    booksList = inputBooksList(length);
     do
     {
         showMenu();
         cin >> choice;
         switch (choice)
         {
-        case 1:
-            booksList = inputBooksList(length);
-            break;
         case 2:
             showBooksList(booksList, length);
             break;
@@ -54,7 +52,7 @@ int main()
             findBookAndUpdate(booksList, length);
             break;
         case 5:
-            addBook(booksList, length);
+            addBook(&booksList, length);
             break;
         case 6:
             insertBook(booksList, length);
@@ -75,7 +73,6 @@ int main()
 // các hàm
 void showMenu()
 {
-    cout << "1. Nhap  cuon sach" << endl;
     cout << "2. Hien thi danh sach cac cuon sach" << endl;
     cout << "3. Tim sach theo ten" << endl;
     cout << "4. Cap nhat thong tin sach" << endl;
@@ -90,6 +87,7 @@ void inputAuthorsList(ListAuthors *authors)
     authors->authorsName = new string[authors->length];
     for (int i = 0; i < authors->length; i++)
     {
+        cout << "input author " << i + 1 << ": ";
         fflush(stdin);
         getline(cin, authors->authorsName[i]);
     }
@@ -199,16 +197,17 @@ void findBookAndUpdate(Book *booksList, int length)
     }
 }
 
-void addBook(Book *booksList, int &length)
+void addBook(Book **booksList, int &length)
 {
     Book *newBookList = new Book[length + 1];
     for (int i = 0; i < length; i++)
     {
-        newBookList[i] = booksList[i];
+        newBookList[i] = *(booksList)[i];
     }
     inputABook(newBookList[length]);
-    delete[] booksList;
-    booksList = newBookList;
+    if (booksList != NULL)
+        delete[](*booksList);
+    (*booksList) = newBookList;
     length++;
 }
 
