@@ -5,7 +5,8 @@
 #include <iostream>
 #include <stdlib.h> /* srand, rand */
 #include <time.h>
-
+#include <conio.h>
+#include <csignal>
 using namespace std;
 
 struct Vehicle
@@ -95,6 +96,7 @@ void showQueue(Queue *q)
 }
 int main()
 {
+
     srand(time(NULL));
     Queue *q = createQueue();
     int n;
@@ -102,31 +104,35 @@ int main()
     int count = 0;
     string list[3] = {"container", "tai", "khach"};
     bool stop = false;
-    while (true)
+    char c = '1';
+    while (c != (char)27)
     {
-
-        n = rand() % 5;
-        for (int i = 0; i < n; i++)
+        do
         {
-            vehicle.name = "xe " + list[rand() % 3];
-            vehicle.soDk = count++;
-            if (q->size == 20)
+            n = rand() % 5;
+            for (int i = 0; i < n; i++)
             {
+                vehicle.name = "xe " + list[rand() % 3];
+                vehicle.soDk = count++;
+                if (q->size == 20)
+                {
+                    break;
+                }
+                enQueue(q, vehicle);
+                cout << "di vao Loai xe: " << vehicle.name << " Ma so: " << vehicle.soDk << endl;
+                _sleep(1000);
+            }
+
+            if (isEmpty(q) || q->size == 20)
+            {
+                showQueue(q);
                 break;
             }
-            enQueue(q, vehicle);
-            cout << "di vao Loai xe: " << vehicle.name << " Ma so: " << vehicle.soDk << endl;
+            Vehicle *a = deQueue(q);
+            cout << "Di ra loai xe: " << a->name << " ma so: " << a->soDk << endl;
             _sleep(1000);
-        }
-
-        if (isEmpty(q) || q->size == 20)
-        {
-            showQueue(q);
-            break;
-        }
-        Vehicle *a = deQueue(q);
-        cout << "Di ra loai xe: " << a->name << " ma so: " << a->soDk << endl;
-        _sleep(1000);
+        } while (!kbhit());
+        c = getchar();
     }
 
     return 0;
