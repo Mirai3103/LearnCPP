@@ -1,10 +1,14 @@
+/*
+ * Ngo Huu Hoang
+ * 3121560032
+ */
 #include <iostream>
 #include <stdlib.h> /* srand, rand */
 #include <time.h>
 
 using namespace std;
 
-struct Car
+struct Vehicle
 {
     string name;
     int soDk;
@@ -12,7 +16,7 @@ struct Car
 
 struct Node
 {
-    Car car;
+    Vehicle vehicle;
     Node *nextNode;
 };
 
@@ -33,10 +37,10 @@ bool isEmpty(Queue *q)
 {
     return q->front == NULL;
 }
-void enQueue(Queue *q, Car car)
+void enQueue(Queue *q, Vehicle vehicle)
 {
     Node *node = new Node();
-    node->car = car;
+    node->vehicle = vehicle;
     node->nextNode = NULL;
     if (isEmpty(q))
     {
@@ -49,7 +53,7 @@ void enQueue(Queue *q, Car car)
     }
     q->size++;
 }
-Car *deQueue(Queue *q)
+Vehicle *deQueue(Queue *q)
 {
     if (isEmpty(q))
     {
@@ -66,11 +70,11 @@ Car *deQueue(Queue *q)
         {
             q->rear = NULL;
         }
-        Car *car = new Car();
-        car->name = temp->car.name;
-        car->soDk = temp->car.soDk;
+        Vehicle *vehicle = new Vehicle();
+        vehicle->name = temp->vehicle.name;
+        vehicle->soDk = temp->vehicle.soDk;
         delete temp;
-        return car;
+        return vehicle;
     }
 }
 void showQueue(Queue *q)
@@ -84,7 +88,7 @@ void showQueue(Queue *q)
         Node *temp = q->front;
         while (temp != NULL)
         {
-            cout << temp->car.name << " " << temp->car.soDk << endl;
+            cout << temp->vehicle.name << " " << temp->vehicle.soDk << endl;
             temp = temp->nextNode;
         }
     }
@@ -94,7 +98,7 @@ int main()
     srand(time(NULL));
     Queue *q = createQueue();
     int n;
-    Car car;
+    Vehicle vehicle;
     int count = 0;
     string list[3] = {"container", "tai", "khach"};
     bool stop = false;
@@ -104,14 +108,14 @@ int main()
         n = rand() % 5;
         for (int i = 0; i < n; i++)
         {
-            car.name = "Car " + list[rand() % 3];
-            car.soDk = count++;
+            vehicle.name = "xe " + list[rand() % 3];
+            vehicle.soDk = count++;
             if (q->size == 20)
             {
                 break;
             }
-            enQueue(q, car);
-            cout << "Enqueue Loai xe: " << car.name << " Ma so: " << car.soDk << endl;
+            enQueue(q, vehicle);
+            cout << "di vao Loai xe: " << vehicle.name << " Ma so: " << vehicle.soDk << endl;
             _sleep(1000);
         }
 
@@ -120,8 +124,8 @@ int main()
             showQueue(q);
             break;
         }
-        Car *a = deQueue(q);
-        cout << "Dequeue loai xe: " << a->name << " ma so: " << a->soDk << endl;
+        Vehicle *a = deQueue(q);
+        cout << "Di ra loai xe: " << a->name << " ma so: " << a->soDk << endl;
         _sleep(1000);
     }
 
