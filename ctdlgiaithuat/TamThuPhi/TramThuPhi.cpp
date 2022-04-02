@@ -6,7 +6,8 @@
 #include <stdlib.h> /* srand, rand */
 #include <time.h>
 #include <conio.h>
-#include <csignal>
+// #include <Windows.h>
+#include <unistd.h>
 using namespace std;
 
 struct Vehicle
@@ -33,6 +34,7 @@ Queue *createQueue()
     q->front = NULL;
     q->rear = NULL;
     q->size = 0;
+    return q;
 }
 bool isEmpty(Queue *q)
 {
@@ -105,6 +107,8 @@ int main()
     string list[3] = {"container", "tai", "khach"};
     bool stop = false;
     char c = '1';
+    printf("press esc to stop\n");
+    printf("\n");
     while (c != (char)27)
     {
         do
@@ -119,8 +123,8 @@ int main()
                     break;
                 }
                 enQueue(q, vehicle);
-                cout << "di vao Loai xe: " << vehicle.name << " Ma so: " << vehicle.soDk << endl;
-                _sleep(1000);
+                cout << "Di vao Loai xe: " << vehicle.name << " Ma so: " << vehicle.soDk << endl;
+                sleep(1);
             }
 
             if (isEmpty(q) || q->size == 20)
@@ -130,7 +134,7 @@ int main()
             }
             Vehicle *a = deQueue(q);
             cout << "Di ra loai xe: " << a->name << " ma so: " << a->soDk << endl;
-            _sleep(1000);
+            sleep(1);
         } while (!kbhit());
         c = getchar();
     }
