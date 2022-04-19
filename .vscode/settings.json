@@ -12,6 +12,10 @@
         "cctype": "c",
         "regex": "c",
         "iostream": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "algorithm": "cpp",
+        "ostream": "cpp"
     }
 }

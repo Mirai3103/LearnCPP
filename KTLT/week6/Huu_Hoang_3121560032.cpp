@@ -1,11 +1,16 @@
+/*
+ Ngo Huu Hoang
+ 3121560032
+*/
 #include <iostream>
 #include <math.h>
+#include <iomanip>
 using namespace std;
 
 void input(double **&arr, int &m, int &n);
 void display(double **arr, int m, int n);
 double sumOfNonNegativeNumbers(double **arr, int m, int n);
-int *findSquareNumbers(double **arr, int m, int n, int &l);
+int *findSquareNumbers(double **arr, int m, int n, int &length);
 
 int main()
 {
@@ -13,17 +18,17 @@ int main()
     int m, n;
     input(arr, m, n);
     display(arr, m, n);
-    cout << "\nTong cac so am trong ma tran: " << sumOfNonNegativeNumbers(arr, m, n);
-    int l = 0;
-    int *SquareNumbers = findSquareNumbers(arr, m, n, l);
-    if (l == 0)
+    cout << "\nTong cac so khong am trong ma tran: " << sumOfNonNegativeNumbers(arr, m, n);
+    int length = 0;
+    int *SquareNumbers = findSquareNumbers(arr, m, n, length);
+    if (length == 0)
     {
-        cout << "\nKhong co so chinh phuong trong ma tran";
+        cout << "\nKhong co so chinh phuong trong ma tran!";
     }
     else
     {
         cout << "\nCac so chinh phuong trong ma tran la: \n";
-        for (int i = 0; i < l; i++)
+        for (int i = 0; i < length; i++)
         {
             cout << SquareNumbers[i] << ", ";
         }
@@ -58,7 +63,7 @@ void display(double **arr, int m, int n)
     {
         for (int j = 0; j < n; j++)
         {
-            cout << arr[i][j] << " ";
+            cout << setw(6) << setprecision(2) << fixed << arr[i][j];
         }
         cout << endl;
     }
@@ -80,7 +85,7 @@ double sumOfNonNegativeNumbers(double **arr, int m, int n)
     return sum;
 }
 
-int *findSquareNumbers(double **arr, int m, int n, int &l)
+int *findSquareNumbers(double **arr, int m, int n, int &length)
 {
     int *squareNumbers = new int[m * n];
     int temp = 0;
@@ -91,7 +96,7 @@ int *findSquareNumbers(double **arr, int m, int n, int &l)
             temp = (int)sqrt(arr[i][j]);
             if (temp * temp == arr[i][j])
             {
-                squareNumbers[l++] = arr[i][j];
+                squareNumbers[length++] = arr[i][j];
             }
         }
     }

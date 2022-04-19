@@ -46,15 +46,21 @@ int findmin(int **&a, int m,int n)
 
 void makeArrayB(int **&a,int m,int n,int **&b)
 {
-    for(int j=0;j<n;j++) {
+
+    b = new int*[n];
+    for (int i=0;i<n;i++) {
+        b[i] = new int[m];
+    }
+    for(int j=0;j<m;j++) {
         int maxc = maxcot(a,m,n,j);
-        for (int i=0;i<m;i++) {
+        for (int i=0;i<n;i++) {
             b[i][j] = a[i][j] * maxc;
         }
     } 
+
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
     FILE *fi = fopen("input_2.txt","r");
     if (fi==NULL) {
@@ -78,14 +84,14 @@ int main(int argc, char const *argv[])
     fprintf(fo,"Cau b: %d\n",kqb);
     int **b;
     makeArrayB(arr,m,n,b);
-    // fprintf(fo,"Cau c: ");
-    // for (int i=0;i<n;i++) {
-    //     for (int j=0;j<m;j++) {
-    //         fprintf(fo,"%d ",b[i][j]);
-    //     }
-    //     fprintf(fo,"\n");
-    // }
+    fprintf(fo,"Cau c:\n");
+    for (int i=0;i<n;i++) {
+        for (int j=0;j<m;j++) {
+            fprintf(fo,"%d ",b[i][j]);
+        }
+        fprintf(fo,"\n");
+    }
   
-    // fclose(fo);
+    fclose(fo);
     return 0;
 }

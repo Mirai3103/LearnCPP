@@ -60,8 +60,6 @@ void display(Poly *p)
             printf("%d", p->arr[i].coff);
         else
             printf("%dx^%d", p->arr[i].coff, p->arr[i].exp);
-
-            
         if (i == p->size - 1)
             printf("\n");
         else
