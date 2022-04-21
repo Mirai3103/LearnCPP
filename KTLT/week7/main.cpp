@@ -39,7 +39,7 @@ int maxLengthWord(char *s){
 char * subString(char *s, int pos, int n){
     int i = 0;
     int j = 0;
-    char *rs = new char[strlen(s)] ;
+    char *rs = new char[n+1] ;
     while(i<pos && s[i]!='\0')
     {
         i++;
@@ -58,8 +58,8 @@ char * subString(char *s, int pos, int n){
 int main()
 {
     char s[]= "ngohhua    dasdadsasd hoang    ";
-    cout << wordCount(s);
-    cout << maxLengthWord(s);
-    cout << subString(s,1,3);
+    cout << wordCount(s) <<endl;
+    cout << maxLengthWord(s) <<endl;
+    cout << subString(s,1,3) <<endl;
     return 0;
 }
