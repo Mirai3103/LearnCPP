@@ -35,6 +35,7 @@ int usingStack(int n)
             result[++topRS] = temp;
             continue;
         }
+        
     }
 
 }
