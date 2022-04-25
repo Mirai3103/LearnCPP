@@ -1,100 +1,40 @@
-#include <stdio.h>
-#include <math.h>
-
-void nhapmang(int a[], int &n)
+#include <iostream>
+using namespace std;
+#include <cstring>
+void e(char const s[])
 {
-    for (int i = 0; i < n; i++)
+    int cnt, k;
+    char str[100];
+    int newlength = 0;
+    int i = 0;
+    while (s[i] != '\0' && s[i] != ' ')
     {
-        printf("\na[%d]= ", i);
-        scanf("%d", &a[i]);
+        i++;
     }
-}
-
-void xuatmang(int a[], int &n)
-{
-    for (int i = 0; i < n; i++)
+    memcpy(str, s, i + 1);
+    newlength += (i + 1);
+    while (s[i] != '\0')
     {
-        printf("\na[%d]=%d", i, a[i]);
-    }
-}
 
-bool snt(int n)
-{
-    if (n <= 1)
-        return false;
-    if (n == 2)
-        return true;
-    for (int i = 2; i <= sqrt(n); i++)
-    {
-        if (n % i == 0)
-            return false;
-    }
-    return true;
-}
-
-bool daosnt(int n)
-{
-    
-        int a, b = 0;
-        if (snt(n))
+        if (s[i] == ' ')
         {
-            while (n > 0)
-            {
-                a = n % 10;
-                b = b * 10 + a;
-                n = n / 10;
-            }
-            // printf("-b-%d", n);
-            if (snt(b))
-                return true;
-            return false;
+            k = i;
         }
-    
-    return false;
-}
-
-void sapxep(int a[], int &n)
-{
-    int temp;
-    for (int i = 0; i < n; i++)
+        i++;
+    }
+    memcpy(str + newlength, s + k + 1, i - k + 1);
+    newlength = newlength + i - k + 1;
+    str[newlength] = '\0';
+    i = 0;
+    while (str[i] != '\0')
     {
-        for (int j = 0; j < n; j++)
-        {
-            if (a[i] < a[j])
-            {
-                temp = a[i];
-                a[i] = a[j];
-                a[j] = temp;
-            }
-        }
+        cout << str[i];
+        i++;
     }
 }
 
-int main(int argc, char **argv)
+int main()
 {
-    int tien$ =2;
-    int n;
-    printf("Nhap do dai cua mang : ");
-    scanf("%d", &n);
-    int a[n];
-    nhapmang(a, n);
-    xuatmang(a, n);
-    bool khongtontai = true;
-    printf("\nCac so sau khi dao van la so nguyen to la: ");
-    for (int i = 0; i < n; i++)
-    {
-        if (daosnt(a[i]))
-        {
-            printf("%d; ", a[i]);
-            khongtontai = false;
-        }
-    }
-    if (khongtontai == true)
-        printf("\nKhong ton tai");
-    printf("\nSau khi sap xep theo chieu tang dan");
-    sapxep(a, n);
-    xuatmang(a, n);
-
-    
-    return 0;
+    char s[] = "ngo huu hoang";
+    e(s);
 }
