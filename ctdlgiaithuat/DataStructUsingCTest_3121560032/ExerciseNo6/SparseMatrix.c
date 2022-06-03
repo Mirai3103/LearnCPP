@@ -29,6 +29,7 @@ int main()
     transpose(SM, SMT);
     printf("Transpose is\n");
     printRawSparseMatrix(SMT);
+    printMatrix(SMT);
     return 0;
 }
 

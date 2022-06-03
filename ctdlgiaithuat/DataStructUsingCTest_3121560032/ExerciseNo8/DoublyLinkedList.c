@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node{
+typedef struct node
+{
     int data;
     struct node *next, *prev;
 } Node;
@@ -30,7 +31,7 @@ int main()
     initialize(&list);
     while (1)
     {
-        showMenu();
+
         printf("Enter your Choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -87,7 +88,6 @@ int main()
     return 0;
 }
 
-
 // function definitions
 void initialize(LinkedList *list)
 {
@@ -135,7 +135,6 @@ void insertFirst(LinkedList *list, int data)
     }
     list->count++;
 }
-
 
 void insertMiddle(LinkedList *list, int data, int position)
 {
